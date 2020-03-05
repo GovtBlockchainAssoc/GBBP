@@ -5,7 +5,7 @@ There is no code here since it is all distributed out to the repos listed below.
 
 Documentation 
   * https://github.com/GovtBlockchainAssoc/DraftDocs - Home of the draft documentation Word documents and wiki pages.  The documentation creators Kanban board resides on the Draft Documents Projects tab.
-  * https://github.com/GovtBlockchainAssoc/GBBP/Docs - Home of the current, finalized documentation
+  * https://github.com/GovtBlockchainAssoc/GBBP/tree/master/Docs - Home of the current, finalized documentation
 
 GBATokens - smart contracts for GBA tokens (where applicable)
  * Ethereum (https://github.com/GovtBlockchainAssoc/GBAToken-Eth)
