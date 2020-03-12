@@ -2,8 +2,11 @@
 
 ##<u>prerequisites:</u>
 
-a recent Java installation (OpenJDK 13)
-libsodium23 & libsodium-dev_1.0.16 (libraries)
+1) a recent Java installation (OpenJDK 13)
+
+2) libsodium23 & libsodium-dev_1.0.16 (libraries)
+
+for 1:
 
 find your available versions of Java
 
@@ -24,6 +27,8 @@ should return something like this:
     openjdk 13.0.2 2020-01-14
     OpenJDK Runtime Environment Zulu13.29+9-CA (build 13.0.2+6-MTS)
     OpenJDK 64-Bit Server VM Zulu13.29+9-CA (build 13.0.2+6-MTS, mixed mode, sharing)
+
+for 2:
     
 on Linux Mint 17 'Qiana' (based on Ubuntu 14.04 "trusty"), I installed
 
@@ -108,6 +113,7 @@ SOLVED:
 
 
 installed
+
     libsodium23_1.0.16-0ppa3~trusty1_amd64.deb 
     libsodium-dev_1.0.16-0ppa3~trusty1_amd64.deb
 
