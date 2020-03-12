@@ -26,6 +26,7 @@ should return something like this:
     OpenJDK 64-Bit Server VM Zulu13.29+9-CA (build 13.0.2+6-MTS, mixed mode, sharing)
     
 on Linux Mint 17 'Qiana' (based on Ubuntu 14.04 "trusty"), I installed
+
     libsodium23_1.0.16-0ppa3~trusty1_amd64.deb 
     libsodium-dev_1.0.16-0ppa3~trusty1_amd64.deb
 
