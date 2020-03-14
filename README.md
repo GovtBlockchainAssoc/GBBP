@@ -10,8 +10,11 @@ Documentation
 Smart Contracts - Smart contracts for each blockchain programming.  Note that all smart contracts for a given blockchain can easily be stored in the single appropriate directory of that repo (i.e. /contracts for Solidity)
  * Solidity (https://github.com/GovtBlockchainAssoc/SolidityContracts)
   
-DApp Repos (including Gateways) - Each DApp should have a separate repository.  The smart contract & DApp developer Kanban boards for each linked blockchain will reside on that blockchain's gateway repo and the README.md will maintain pointers to all developer repos for that blockchain.
+Gateways - Each DApp should have a separate repository.  The smart contract & DApp developer Kanban boards for each linked blockchain/language will reside on that blockchain/language's gateway repo and the README.md will maintain pointers to all developer repos for that blockchain/language.
+  * Solidity Gateway (https://github.com/GovtBlockchainAssoc/SolidityGateway)
   * Steem Gateway (https://github.com/GovtBlockchainAssoc/SteemGateway)
+  
+DApp Repos - Each DApp should have a separate repository.
   * PoAEthTokensDApp (https://github.com/GovtBlockchainAssoc/PoAEthTokensDApp) - PoA Ethereum faucet and user-interface for transfer functions from PoA Ethereum to Steem (but not back) and among all Ethereum blockchains (PoA, public Ethereum main net and test nets)
   * MtNodeTSReactDApp (https://github.com/GovtBlockchainAssoc/MtNodeTSReactDApp) - Empty NodeJS TypeScript Express React Web App for initializing DApp projects
 
