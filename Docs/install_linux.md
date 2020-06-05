@@ -4,19 +4,6 @@
 
 1) a recent Java installation (OpenJDK 13 or 14)
 
-2) libsodium23 & libsodium-dev_1.0.16 (libraries)
-
-3) ntp synced to a good time source
-
-sudo apt-get install ntp
-sudo service ntp stop
-sudo ntpdate ntp.ubuntu.com
-sudo service ntp restart
-
-
-
-for 1:
-
 find your available versions of Java
 
     sudo apt search openjdk   # should show available versions of JDK/JRE (debian)
@@ -37,8 +24,8 @@ should return something like this:
     OpenJDK Runtime Environment Zulu13.29+9-CA (build 13.0.2+6-MTS)
     OpenJDK 64-Bit Server VM Zulu13.29+9-CA (build 13.0.2+6-MTS, mixed mode, sharing)
 
-for 2:
-    
+2) libsodium23 & libsodium-dev_1.0.16 (libraries)
+
 on Linux Mint 17 'Qiana' (based on Ubuntu 14.04 "trusty"), I installed
 
     libsodium23_1.0.16-0ppa3_trusty1_amd64.deb 
@@ -52,6 +39,16 @@ via
 from 
 
 https://launchpad.net/~phoerious/+archive/ubuntu/keepassxc/+sourcepub/8814980/+listing-archive-extra
+
+
+3) ntp synced to a good time source
+
+    sudo apt-get install ntp
+    sudo service ntp stop
+    sudo ntpdate ntp.ubuntu.com
+    sudo service ntp restart
+
+If you can't sync your node, always check the CLOCK TIME!!
 
 
 ##<u>Node Set Up</u>
@@ -78,7 +75,8 @@ if you need to recompile, use
 
   
   1. GBA Istanbul Byzantine Fault-Tolerant (IBFT) genesis block, save as GBA_IBFT_genesis.json
-  
+
+<pre>
 {
   "config": {
     "chainId": 2020,
@@ -98,7 +96,7 @@ if you need to recompile, use
   "coinbase": "0x0000000000000000000000000000000000000000",
   "alloc": {}
 }  
-     
+</pre>
 
 ##<u>Node Connection to the PoA Network</u>
 
@@ -110,16 +108,15 @@ open port 30303 in your firewall:
 make a static-nodes.json file in your build/install/besu folder  
   
     [
-    "enode://d5e7a620b32872393f2d2bf70d7ea0f29864802cf2230deea3ef4bc708abba99953baa21e051b32533142bd9176fee2acf4be4cd2506f32f8f333cc285fec502@40.79.33.82:30300",
-    "enode://e377295d51c9f4a9f7429b5cd2b10f86f12f3cd4e51228e8d9aabb61a9e71698604aa131ac9f6017febfd0138bec7f6207c27b11503b58baa333de5347e6bac5@52.177.65.115:30300"
+    "enode://b4f4751830a6a7ca7a5fdb03a6a61b2c7745d672dbfe3a3b38f1074b0c90d9933b0ed1019ac4b73d09791333d938438b58a9ce5c5e26f3d9ee6d44f75f72212e@63.227.14.139:30303"
     ]
 
 
-admin eth address: 0xc13b4e4cB7c2AF0D90A293d4d94De61Bf5317504
+admin eth address: 0xc13b4e4cB7c2AF0D90A293d4d94De61Bf5317504 (old)
 
-network info URL : http://etht5zt7j-dns-reg1.eastus2.cloudapp.azure.com:3001/networkinfo
+network info URL : http://etht5zt7j-dns-reg1.eastus2.cloudapp.azure.com:3001/networkinfo (old)
 
-standard options
+standard BESU NODE options
 
     --identity=2           2 for EnLedger (?)
     --network-id=<BIG INTEGER>    # get from somewhere (?)
@@ -165,7 +162,40 @@ Tutorial address:
     https://besu.hyperledger.org/en/stable/Tutorials/Private-Network/Create-IBFT-Network/
     https://besu.hyperledger.org/en/stable/HowTo/Configure/Consensus-Protocols/IBFT/
 
-   
+##<u>Setting up initial validator node:</u>
+  
+get install instructions for IBFT 2.0 node setup from online docs  
+  
+> besu rlp encode --from=./toEncode.json
+
+to create initial "extra data" string from validator list
+public eth addresses) in ["xx","xx","xx"] data file format
+
+to get addresses in right format: 
+
+> besu public-key export-address
+
+example: 0x4f12efc5443be3c7e039508c080b2c9d95dd777f
+
+remove 0x from the beginning of addresses from the toEncode.json validate list: 4f12efc5443be3c7e039508c080b2c9d95dd777f
+
+ok started an IBFT node, maybe (?)
+
+enode://fe639f8c0e7fc79ffd6eacbe7f49e82bba28a42b5a899c8f72694865b4d752d88ca050f866d36cf2856ad6bff3c3bb47ba46933fc30f81e3fcb715797985a929@63.227.14.139:30303
+
+
+bootnode start command:  
+  
+> besu --genesis-file=/path/to/GBA_IBFT_genesis.json --p2p-host="server.external.ip.address"
+  
+peernode start command:  
+  
+put enode addresses in static-nodes.json in ["xx","xx","xx"] format
+
+> besu --genesis-file=/path/to/GBA_IBFT_genesis.json
+
+
+
 ##<u>debug notes</u>
 
     task :besu:test
@@ -209,41 +239,10 @@ https://launchpad.net/~phoerious/+archive/ubuntu/keepassxc/+sourcepub/8814980/+l
 
 you may need to find a recent version of libsodium & libsodium-dev for your specific system
 
-    
-    
-    
-    
-##<u>Setting up initial validator node:</u>
   
-get install instructions for IBFT 2.0 node setup from online docs  
-  
-> besu rlp encode --from=./toEncode.json
-
-to create initial "extra data" string from validator list
-public eth addresses) in ["xx","xx","xx"] data file format
-
-to get addresses in right format: 
-
-> besu public-key export-address
-
-example: 0x4f12efc5443be3c7e039508c080b2c9d95dd777f
-
-remove 0x from the beginning of addresses from the toEncode.json validate list: 4f12efc5443be3c7e039508c080b2c9d95dd777f
-
-ok started an IBFT node, maybe (?)
-
-enode://fe639f8c0e7fc79ffd6eacbe7f49e82bba28a42b5a899c8f72694865b4d752d88ca050f866d36cf2856ad6bff3c3bb47ba46933fc30f81e3fcb715797985a929@63.227.14.139:30303
 
 
-bootnode start command:  
-  
-> besu --genesis-file=/path/to/GBA_IBFT_genesis.json --p2p-host="server.external.ip.address"
-  
-peernode start command:  
-  
-put enode addresses in static-nodes.json in ["xx","xx","xx"] format
 
-> besu --genesis-file=/path/to/GBA_IBFT_genesis.json
 
 
 
