@@ -6,6 +6,15 @@
 
 2) libsodium23 & libsodium-dev_1.0.16 (libraries)
 
+3) ntp synced to a good time source
+
+sudo apt-get install ntp
+sudo service ntp stop
+sudo ntpdate ntp.ubuntu.com
+sudo service ntp restart
+
+
+
 for 1:
 
 find your available versions of Java
